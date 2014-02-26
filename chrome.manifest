@@ -1,0 +1,2 @@
+content readoutloud content/
+overlay chrome://browser/content/browser.xul chrome://readoutloud/content/readoutloud.xul

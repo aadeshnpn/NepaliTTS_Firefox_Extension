@@ -1,0 +1,15 @@
+<?xml version="1.0"?>                 
+<overlay id="Scrapper-Overlay"
+xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<script charset="utf-8" type="application/x-javascript" src="chrome://readoutloud/content/readoutloud_script.js" />
+<toolbox id="navigator-toolbox">
+  <toolbar id="readoutloud_id" toolbarname="Read Out Loud" >
+      <label value="Read Out Loud: "/>        
+      <toolbarbutton id="readoutloud_button"
+        label="READ" oncommand="readoutloud_function()" />
+  </toolbar>
+</toolbox>
+<keyset id="mainKeyset"> 
+	<key id="key_convert" key="z" modifiers="accel alt" oncommand="readoutloud_function()"/> 
+</keyset>
+</overlay>
