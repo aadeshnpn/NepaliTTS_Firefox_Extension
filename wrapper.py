@@ -8,7 +8,7 @@ filename1="/usr/lib/cgi-bin/tts/run.sh"
 #cmd = "xterm -hold -e `ls` "
 # no block, it start a sub process.
 #subprocess.call("cd /usr/lib/cgi-bin/tts/",shell=True)
-p = subprocess.Popen(filename1, shell=True)
+p = subprocess.Popen(filename, shell=True)
 #subprocess.call("/bin/bash/ " + filename,shell=True)
 # and you can block util the cmd execute finish
 #p.wait()
