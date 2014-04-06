@@ -2,7 +2,7 @@
 #@author: Aadeshnpn
 #encoding : UTF-8
 import socket,sys
-import subprocess
+import subprocess,codecs
 
 filename="/usr/lib/cgi-bin/tts/run_male.sh"
 HOST = "127.0.0.1"# Symbolic name meaning the local host
@@ -46,7 +46,7 @@ while True:
 conn.close() # When we are out of the loop, we're done, close
 
 if len(stored_data) >=0:
-    f=open("text.txt","w")
+    f=codecs.open("text.txt","w")
     f.write(stored_data)
     f.close()
     p = subprocess.Popen(filename, shell=True)
