@@ -49,7 +49,7 @@ function readoutloud_function(){
 	//document.location = "http://127.0.0.1/test/process.php?q=" + data;
 	var url="http://127.0.0.1/test/process.php?q=" + data;
 	var win=window.open(url,'_blank');
-	win.focus();
+	//win.focus();
 	// READ
 	var input = {};
 	var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"].createInstance(Components.interfaces.nsIFileInputStream);
@@ -58,8 +58,9 @@ function readoutloud_function(){
         converter.init(inputStream, "UTF-8", 0, 0x0000);
 	converter.readString(inputStream.available(), input);
 	
-	alert(data + ' this is output '+input);
-	
+	//alert(data + ' this is output '+input);
+	window.setTimeout(function(){win.close()},1000);
+	//win.close();
 	//Delete The text file
 	if(!file.exists()){
 	  file.delete(file.NORMAL_FILE_TYPE);
