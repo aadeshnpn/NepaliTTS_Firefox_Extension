@@ -14,9 +14,11 @@ function readoutloud_function(){
 	getPlatform= navigator.platform.toLowerCase().split(" ");
 	var platform = getPlatform[0];
 	if(platform =='linux'){
-		file.initWithPath("/home/aadeshnpn/Desktop/test.txt");
+		file.initWithPath("/usr/lib/cgi-bin/tts/test.txt");
 		if ( file.exists() == false ) 
 			file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420);
+		else
+			file.remove(true)
 	}else if(platform =='win32' || platform == 'win16') {
 		file.initWithPath("C:\\test.txt");
 		if ( file.exists() == false ) 
@@ -29,6 +31,7 @@ function readoutloud_function(){
 	if(!file.exists()){
 	  file.create(file.NORMAL_FILE_TYPE, 0666);
 	}
+	
 	// WRITE
 	var data = content.getSelection();
 	var charset = 'UTF-8';
@@ -42,7 +45,11 @@ function readoutloud_function(){
 	converterStream.close();
 	fileStream.close();
 
-
+	//Execute CGI Script
+	//document.location = "http://127.0.0.1/test/process.php?q=" + data;
+	var url="http://127.0.0.1/test/process.php?q=" + data;
+	var win=window.open(url,'_blank');
+	//win.focus();
 	// READ
 	var input = {};
 	var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"].createInstance(Components.interfaces.nsIFileInputStream);
@@ -51,6 +58,12 @@ function readoutloud_function(){
         converter.init(inputStream, "UTF-8", 0, 0x0000);
 	converter.readString(inputStream.available(), input);
 	
-	alert(data + ' this is output '+input);
+	//alert(data + ' this is output '+input);
+	window.setTimeout(function(){win.close()},1000);
+	//win.close();
+	//Delete The text file
+	if(!file.exists()){
+	  file.delete(file.NORMAL_FILE_TYPE);
+	}
 } 
 
